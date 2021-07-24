@@ -116,8 +116,8 @@ impl Peers {
                 peers.insert(peer.to_owned());
                 peers
             });
-        debug!("Got {} peers from exchange", peers.len());
-        //debug!("Got {} peers: {:?}", peers.len(), &peers);
+        //debug!("Got {} peers from exchange", peers.len());
+        debug!("Got {} peers: {:?}", peers.len(), &peers);
         // TODO make it return error if these peers are wrong and seem like an attack
         for peer in peers.iter() {
             let addr: SocketAddr = match peer.parse() {
@@ -132,7 +132,7 @@ impl Peers {
                 .iter()
                 .find(|(_token, peer)| peer.get_addr().ip() == addr.ip())
                 .is_some() {
-                //debug!("Skipping address from exchange: {}", &addr);
+                debug!("Skipping address from exchange: {}", &addr);
                 continue;
             }
 
@@ -140,7 +140,7 @@ impl Peers {
                 .iter()
                 .find(|a| a.ip().eq(&addr.ip()))
                 .is_some() {
-                //debug!("Skipping address from exchange: {}", &addr);
+                debug!("Skipping address from exchange: {}", &addr);
                 continue;
             }
 
@@ -150,7 +150,7 @@ impl Peers {
             }
 
             if skip_private_addr(&addr) {
-                //debug!("Skipping address from exchange: {}", &addr);
+                debug!("Skipping address from exchange: {}", &addr);
                 continue; // Return error in future
             }
             self.new_peers.push(addr);
