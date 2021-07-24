@@ -398,7 +398,7 @@ impl Peers {
             info!("Got addresses: {:?}", &addresses);
 
             // At first we connect to 5 peer addresses
-            if set.len() >= 10 {
+            if set.len() >= 40 {
                 break;
             }
 
